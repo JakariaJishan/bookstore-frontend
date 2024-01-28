@@ -35,7 +35,6 @@ export class BookComponent implements OnInit {
     let formData = {
       title: this.bookForm.value.title,
       description: this.bookForm.value.description,
-      user_id: 3,
     };
     this.bookService.postBook(formData).subscribe((data) => {
       window.location.reload()

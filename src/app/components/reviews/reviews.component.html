@@ -1,4 +1,22 @@
 <p>reviews works!</p>
 @for (review of reviews; track $index) {
-   <p>{{review.name}} - {{review.review.message}}</p> 
+<p>{{ review.name }} - {{ review.review.message }}</p>
+
+<form [formGroup]="reviewForm" (submit)="editReview(review.review?.id)">
+  <label for="message">Message</label>
+  <input
+    value="{{review.review?.message}}"
+    type="text"
+    id="message"
+    formControlName="message"
+  />
+  <button type="submit">Edit review</button>
+  <button (click)="deleteReview(review.review?.id)">Delete</button>
+</form>
 }
+
+<form [formGroup]="reviewForm" (submit)="addReview()">
+  <label for="message">Message</label>
+  <input id="message" type="text" formControlName="message" />
+  <button type="submit">Add review</button>
+</form>
