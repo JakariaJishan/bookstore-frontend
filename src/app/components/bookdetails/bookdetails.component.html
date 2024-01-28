@@ -2,4 +2,14 @@
 {{bookDetails?.title}}
 <br/>
 {{bookDetails?.description}}
+
+<button (click)="deleteBook(bookDetails?.id)">Delete book</button>
+
+<form [formGroup]="bookForm" (submit)="editBook(bookDetails?.id)">
+    <label for="title">Title</label>
+    <input id="title" value="{{bookDetails?.title}}" type="text" formControlName="title">
+    <label for="description">description</label>
+    <input id="description" value="{{bookDetails?.description}}" type="text" formControlName="description">
+    <button type="submit">Edit book</button>
+</form>
 <app-reviews></app-reviews>

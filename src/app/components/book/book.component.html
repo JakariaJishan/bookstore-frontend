@@ -1,3 +1,10 @@
+<form [formGroup]="bookForm" (submit)="onSubmit()">
+    <label for="title">Title</label>
+    <input id="title" type="text" formControlName="title">
+    <label for="description">description</label>
+    <input id="description" type="text" formControlName="description">
+    <button type="submit">Add book</button>
+</form>
 
 @for (book of books; track book.id) {
     <app-booklist [book]="book"></app-booklist>
