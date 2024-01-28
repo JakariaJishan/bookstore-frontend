@@ -7,7 +7,7 @@ import { environment } from '../environment/environment';
 })
 export class ReviewService {
   url = environment.bookUrl;
-  private authToken = 'token'
+  private authToken = 'token';
 
   constructor(private http: HttpClient) {}
 
@@ -16,12 +16,11 @@ export class ReviewService {
   }
 
   postReview(newReview: any) {
-    let token = localStorage.getItem(this.authToken)
+    let token = localStorage.getItem(this.authToken);
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization:
-        `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
 
     return this.http.post(
@@ -33,26 +32,31 @@ export class ReviewService {
     );
   }
   editReview(reviewData: any) {
-    let token = localStorage.getItem(this.authToken)
+    let token = localStorage.getItem(this.authToken);
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization:
-        `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
 
-    return this.http.put(`${this.url}/books/${reviewData.bookId}/reviews/${reviewData.id}`, {message:reviewData.message}, {
-      headers,
-    });
+    return this.http.put(
+      `${this.url}/books/${reviewData.bookId}/reviews/${reviewData.id}`,
+      { message: reviewData.message },
+      {
+        headers,
+      }
+    );
   }
 
   deleteReview(reviewData: any) {
-    let token = localStorage.getItem(this.authToken)
+    let token = localStorage.getItem(this.authToken);
 
     let headers = new HttpHeaders({
-      Authorization:
-        `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
-    return this.http.delete(`${this.url}/books/${reviewData.bookId}/reviews/${reviewData.id}`, { headers });
+    return this.http.delete(
+      `${this.url}/books/${reviewData.bookId}/reviews/${reviewData.id}`,
+      { headers }
+    );
   }
 }

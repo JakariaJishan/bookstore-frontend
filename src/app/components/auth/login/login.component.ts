@@ -12,13 +12,11 @@ import { AuthService } from '../../../services/auth.service';
 export class LoginComponent {
   constructor(private authService: AuthService) {}
   loginForm = new FormGroup({
-    username: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
   });
   submitLogin() {
     let loginData = {
-      username: this.loginForm.value.username,
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };

@@ -1,0 +1,6 @@
+<p>mybooks works!</p>
+@for (book of userBooks; track $index) {
+<a [routerLink]="['/book', book.id]">
+  <p>{{ book.title }}</p></a
+>
+}

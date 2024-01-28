@@ -56,4 +56,14 @@ export class BookService {
     });
     return this.http.delete(`${this.url}/books/${id}`, { headers });
   }
+
+  userBooks():Observable<BookModel[]>{
+    let token = localStorage.getItem(this.authToken)
+
+    let headers = new HttpHeaders({
+      Authorization:
+        `Bearer ${token}`,
+    });
+    return this.http.get<BookModel[]>(`${this.url}/user/books`, { headers });
+  }
 }
