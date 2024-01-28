@@ -7,6 +7,8 @@ import { environment } from '../environment/environment';
 })
 export class ReviewService {
   url = environment.bookUrl;
+  private authToken = 'token'
+
   constructor(private http: HttpClient) {}
 
   getBookReviews(id: number) {
@@ -14,10 +16,12 @@ export class ReviewService {
   }
 
   postReview(newReview: any) {
+    let token = localStorage.getItem(this.authToken)
+
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.dRlxLjVid3MpusH2q23Hbjm91TBx6ZRlDpt7WQrtgYc',
+        `Bearer ${token}`,
     });
 
     return this.http.post(
@@ -29,10 +33,12 @@ export class ReviewService {
     );
   }
   editReview(reviewData: any) {
+    let token = localStorage.getItem(this.authToken)
+
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.dRlxLjVid3MpusH2q23Hbjm91TBx6ZRlDpt7WQrtgYc',
+        `Bearer ${token}`,
     });
 
     return this.http.put(`${this.url}/books/${reviewData.bookId}/reviews/${reviewData.id}`, {message:reviewData.message}, {
@@ -41,9 +47,11 @@ export class ReviewService {
   }
 
   deleteReview(reviewData: any) {
+    let token = localStorage.getItem(this.authToken)
+
     let headers = new HttpHeaders({
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.dRlxLjVid3MpusH2q23Hbjm91TBx6ZRlDpt7WQrtgYc',
+        `Bearer ${token}`,
     });
     return this.http.delete(`${this.url}/books/${reviewData.bookId}/reviews/${reviewData.id}`, { headers });
   }

@@ -9,6 +9,7 @@ import { environment } from '../environment/environment';
 })
 export class BookService {
   url = environment.bookUrl;
+  private authToken = 'token'
   constructor(private http: HttpClient) {}
 
   getBooks(): Observable<BookModel[]> {
@@ -20,10 +21,11 @@ export class BookService {
   }
 
   postBook(newBook: any) {
+    let token = localStorage.getItem(this.authToken)
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.dRlxLjVid3MpusH2q23Hbjm91TBx6ZRlDpt7WQrtgYc',
+        `Bearer ${token}`,
     });
 
     return this.http.post(`${this.url}/books`, newBook, {
@@ -32,10 +34,12 @@ export class BookService {
   }
 
   editBook(bookData: any) {
+    let token = localStorage.getItem(this.authToken)
+
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.dRlxLjVid3MpusH2q23Hbjm91TBx6ZRlDpt7WQrtgYc',
+        `Bearer ${token}`,
     });
 
     return this.http.put(`${this.url}/books/${bookData.id}`, bookData, {
@@ -44,9 +48,11 @@ export class BookService {
   }
 
   deleteBook(id: number | undefined) {
+    let token = localStorage.getItem(this.authToken)
+
     let headers = new HttpHeaders({
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozfQ.dRlxLjVid3MpusH2q23Hbjm91TBx6ZRlDpt7WQrtgYc',
+        `Bearer ${token}`,
     });
     return this.http.delete(`${this.url}/books/${id}`, { headers });
   }
