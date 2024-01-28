@@ -5,6 +5,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { AuthGuard } from './guard/auth.guard';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { MybooksComponent } from './components/mybooks/mybooks.component';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     {

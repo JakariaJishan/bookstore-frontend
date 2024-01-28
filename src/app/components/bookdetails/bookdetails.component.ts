@@ -4,11 +4,12 @@ import { BookService } from '../../services/book.service';
 import { BookModel } from '../../model/book.model';
 import { ReviewsComponent } from '../reviews/reviews.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-bookdetails',
   standalone: true,
-  imports: [ReviewsComponent, ReactiveFormsModule],
+  imports: [ReviewsComponent, ReactiveFormsModule, NavbarComponent],
   templateUrl: './bookdetails.component.html',
   styleUrl: './bookdetails.component.css',
 })

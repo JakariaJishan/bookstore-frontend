@@ -1,4 +1,4 @@
-<p>mybooks works!</p>
+<app-navbar></app-navbar>
 @for (book of userBooks; track $index) {
 <a [routerLink]="['/book', book.id]">
   <p>{{ book.title }}</p></a

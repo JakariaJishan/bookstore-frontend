@@ -1,11 +1,60 @@
-<form [formGroup]="bookForm" (submit)="onSubmit()">
-    <label for="title">Title</label>
-    <input id="title" type="text" formControlName="title">
-    <label for="description">description</label>
-    <input id="description" type="text" formControlName="description">
-    <button type="submit">Add book</button>
-</form>
+<app-navbar></app-navbar>
+<button
+  onclick="handleAddBook()"
+  class="ml-20 mt-10  bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+>
+  Add new book
+</button>
+<div
+  class="bg-[#0003] hidden w-screen h-screen fixed top-0 left-0 cursor-auto backdrop-blur"
+  id="add-book-form"
+>
+  <form
+    [formGroup]="bookForm"
+    (submit)="onSubmit()"
+    class="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col mx-auto w-full mt-10 md:mt-0"
+  >
+    <button
+      onclick="closeAddBookForm()"
+      class="absolute top-2 z-100 right-8 text-3xl"
+    >
+      &times;
+    </button>
+    <div class="relative mb-4">
+      <label for="title" class="leading-7 text-sm text-gray-600">Title</label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+      />
+    </div>
+    <div class="relative mb-4">
+      <label for="description" class="leading-7 text-sm text-gray-600"
+        >Description</label
+      >
+      <input
+        id="description"
+        type="text"
+        formControlName="description"
+        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+      />
+    </div>
+    <button
+      type="submit"
+      class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+    >
+      Add book
+    </button>
+  </form>
+</div>
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="grid grid-cols-3 sm:-m-4 -mx-4 -mb-10 -mt-4">
+      @for (book of books; track book.id) {
+      <app-booklist [book]="book"></app-booklist>
 
-@for (book of books; track book.id) {
-    <app-booklist [book]="book"></app-booklist>
-}
+      }
+    </div>
+  </div>
+</section>

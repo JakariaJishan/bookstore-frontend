@@ -4,11 +4,12 @@ import { BookModel } from '../../model/book.model';
 import { BooklistComponent } from '../booklist/booklist.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {  Router } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [BooklistComponent, ReactiveFormsModule],
+  imports: [BooklistComponent, ReactiveFormsModule, NavbarComponent],
   templateUrl: './book.component.html',
   styleUrl: './book.component.css',
 })
